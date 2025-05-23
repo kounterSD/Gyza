@@ -14,9 +14,10 @@ It's a creative social platform where users post encrypted thoughts that are tra
 This outlines the Tech Stack used and an Architectural overview of the Web Application.
 
 ### Tech Stack
-Frontend    React + p5.js	
-Backend     Node.js	 + Express
-Database    MySQL/phpmyadmin
+1. Frontend    React + p5.js	
+2. Backend     Django
+3. Database    MySQL
+
 
 ### Architecture
 Gyza will use a 3-tier-architecture:
