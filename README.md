@@ -14,8 +14,8 @@ It's a creative social platform where users post encrypted thoughts that are tra
 This outlines the Tech Stack used and an Architectural overview of the Web Application.
 
 ### Tech Stack
-1. Frontend    React + p5.js	
-2. Backend     Django
+1. Frontend    React.js	
+2. Backend     Python/Django
 3. Database    MySQL
 
 
@@ -56,6 +56,14 @@ This section outlines the look and feel of the web application, specifically, th
 
 ### User Story
 
-As a user, I want to write a personal or emotional message, encrypt it with a secret key, and share it as a piece of generative art on a public feed — so that others can admire the art, and only those I trust can decrypt and read what I actually wrote.
+As a user,
+I want to share a secret message as a beautiful piece of art,
+so that others can enjoy the visuals, but only trusted people can read the message.
 
+As a viewer,
+I want to explore a feed of mysterious, generative art,
+so that I can experience beauty that feels alive and personal — even if I don’t know the message.
 
+As a trusted friend,
+I want to unlock the meaning behind a piece of encrypted art,
+so that I can read the message while still appreciating the artwork.
