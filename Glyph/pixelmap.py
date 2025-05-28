@@ -1,9 +1,14 @@
 import random
 
+from numpy.f2py.auxfuncs import throw_error
+
+
 # Deterministic seeded random pixel selection
 def get_pixels(width, height, seed, pixel_num):
     rng = random.Random(seed)
     total_pixels = width * height
+    if total_pixels < 12480:
+        throw_error ("The image size must be greater than 112*112")
     print("Total pixels:", total_pixels)
     indices = rng.sample(range(total_pixels), pixel_num)
     pixel_arr=[(idx % width, idx //width) for idx in indices]
