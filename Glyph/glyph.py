@@ -1,5 +1,5 @@
 from PIL import Image
-from Glyph import encrypt, pixelmap, kdf
+from . import encrypt, pixelmap, kdf
 
 TOTAL_CIPHERTEXT_LENGTH = 37440 # including the IV, should be divisible by 48
 CIPHERTEXT_LENGTH = TOTAL_CIPHERTEXT_LENGTH - 16 # without the IV
