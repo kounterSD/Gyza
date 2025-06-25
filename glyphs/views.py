@@ -1,5 +1,9 @@
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+import submods.Glyph.glyph as gyza
+from PIL import Image
 from .models import Glyph
 from .serializers import CreateGlyphSerializer
 
@@ -8,6 +12,32 @@ class CreateGlyph(generics.CreateAPIView):
 
     queryset =  Glyph.objects.all()
     serializer_class = CreateGlyphSerializer
+
+class ReadGlyph(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, uuid):
+        key = request.data.get("key")
+        if not key:
+            return Response({"error":"Key missing from request body"}, status=400)
+        try:
+            glyph = Glyph.objects.get(pk=uuid)
+        except Glyph.DoesNotExist:
+            return Response({
+                "status":"failure",
+                "error": "Glyph not found."
+            }, status=404)
+
+        image = Image.open(glyph.image)
+        try:
+            plaintext = gyza.read(image, key)
+        except ValueError:
+            return Response({
+                "status":"failure",
+                "error":"Incorrect Key"
+            }, status=403)
+
+        return Response({"plaintext": f"{plaintext}"})
+
 
 
 
