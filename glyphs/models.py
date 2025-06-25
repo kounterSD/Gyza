@@ -1,7 +1,11 @@
 from django.db import models
+import uuid
 from users.models import CustomUser
 
 class Glyph(models.Model):
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.TextField(max_length=100)
     image = models.ImageField(upload_to='glyph_images/')
