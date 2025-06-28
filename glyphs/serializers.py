@@ -32,7 +32,7 @@ class CreateGlyphSerializer(serializers.ModelSerializer):
         # Move the buffer's cursor to the beginning
         buffer.seek(0)
         #django readable ContentFile format.
-        content_file = ContentFile(buffer.read(), name=".png")
+        content_file = ContentFile(buffer.read(), name="glyp.png")
 
         request = self.context.get("request")
         author = request.user if request else None
@@ -41,6 +41,9 @@ class CreateGlyphSerializer(serializers.ModelSerializer):
         glyph = Glyph.objects.create(author=author, image=content_file, **validated_data)
         return glyph
 
-
+class GlyphSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Glyph
+        fields = ["title", "image"]
 
 

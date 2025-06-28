@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 import submods.Glyph.glyph as gyza
 from PIL import Image
 from .models import Glyph
-from .serializers import CreateGlyphSerializer
+from .serializers import CreateGlyphSerializer, GlyphSerializer
 
 class CreateGlyph(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -38,7 +38,9 @@ class ReadGlyph(APIView):
 
         return Response({"plaintext": f"{plaintext}"})
 
-
-
-
+class  ListGlyph(generics.ListAPIView):
+    serializer_class = GlyphSerializer
+    def get_queryset(self):
+        user_id = self.kwargs.get("id")
+        return Glyph.objects.filter(author__id=user_id)
 
