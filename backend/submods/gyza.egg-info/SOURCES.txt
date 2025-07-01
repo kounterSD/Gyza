@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+Glyph/__init__.py
+Glyph/encrypt.py
+Glyph/glyph.py
+Glyph/kdf.py
+Glyph/pixelmap.py
+gyza.egg-info/PKG-INFO
+gyza.egg-info/SOURCES.txt
+gyza.egg-info/dependency_links.txt
+gyza.egg-info/requires.txt
+gyza.egg-info/top_level.txt

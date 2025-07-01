@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: gyza
+Version: 0.2.0
+Summary: Encrypt and embed secret messages into images
+Author: jingfreecs
+Requires-Python: >=3.7
+Requires-Dist: contourpy==1.3.0
+Requires-Dist: cycler==0.12.1
+Requires-Dist: fonttools==4.58.0
+Requires-Dist: importlib_resources==6.5.2
+Requires-Dist: kiwisolver==1.4.7
+Requires-Dist: matplotlib==3.9.4
+Requires-Dist: numpy==2.0.2
+Requires-Dist: packaging==25.0
+Requires-Dist: pillow==11.2.1
+Requires-Dist: pycryptodome==3.23.0
+Requires-Dist: pyparsing==3.2.3
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: six==1.17.0
+Requires-Dist: zipp==3.21.0
