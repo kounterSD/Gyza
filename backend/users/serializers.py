@@ -4,6 +4,7 @@ from symbol import continue_stmt
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from .models import CustomUser
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
     confirmPassword = serializers.CharField(write_only=True)
@@ -35,5 +36,18 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise ValidationError("Choose a stronger password")
         return value
 
+class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        # Add custom claims
+        user = self.user
+        data.update({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+        })
+
+        return data
 
 

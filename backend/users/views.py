@@ -3,7 +3,7 @@ from rest_framework.request import Request
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer, TokenObtainPairSerializer
 from .models import CustomUser
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
@@ -15,6 +15,7 @@ class UserRegisterView(generics.CreateAPIView):
 
 #User Login View - access token + refresh token http-only cookie
 class UserTokenObtainPairView(TokenObtainPairView):
+    serializer_class = TokenObtainPairSerializer
     def post(self, request: Request, *args, **kwargs) -> Response:
         response = super().post(request, *args, **kwargs)
         refresh = response.data.get("refresh")
