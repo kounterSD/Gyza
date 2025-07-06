@@ -1,4 +1,5 @@
 import re
+from os import access
 from symbol import continue_stmt
 
 from django.core.exceptions import ValidationError
@@ -42,12 +43,12 @@ class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         user = self.user
-        data.update({
+        return {
+            'access': data['access'],
+            'refresh': data['refresh'],
             'id': user.id,
             'username': user.username,
             'email': user.email,
-        })
-
-        return data
+        }
 
 
