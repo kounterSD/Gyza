@@ -1,5 +1,6 @@
 import {useState, type ChangeEvent, type FormEvent, useEffect} from 'react';
-import axios, {type AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
+import {api} from '../utils/axios';
 // import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar.tsx";
 import {useParams} from "react-router";
@@ -22,37 +23,35 @@ function GlyphDetail() {
         setError('')
     }
     useEffect(() => {
-        const fetchGlyph = async () =>{
+        const getGlyph = async () =>{
             try{
-                const res: AxiosResponse = await axios.get<Glyph>(`http://localhost:8000/api/glyphs/${uuid}/`);
+                const res: AxiosResponse = await api.get<Glyph>(`/glyphs/${uuid}/`);
                 setGlyph(res.data);
             }catch (err){
                 setError((err as Error).message);
             }
         }
-        fetchGlyph();
+        getGlyph();
     }, [uuid]);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try{
-            const res: AxiosResponse = await axios.post(`http://localhost:8000/api/glyphs/${uuid}/read/`, {
+            const res: AxiosResponse = await api.post(`/glyphs/${uuid}/read/`, {
                 key: secret,
-            },{
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access')}`,
-                },});
+            });
 
             setPt(res.data.plaintext);
             setError('')
+            console.log(res.data);
 
         }catch (err) {
             setPt('')
+            console.log(err)
             if (axios.isAxiosError(err) && err.response) {
-                // Now you can access err.response.data
-                console.error(err.response.data);
-                setError(err.response.data?.detail || JSON.stringify(err.response.data));
+                // Access the error response data
+                setError(err.response.data.detail || JSON.stringify(err.response.data));
             } else {
                 setError((err as Error).message);
             }

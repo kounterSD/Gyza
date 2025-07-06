@@ -1,7 +1,8 @@
-import axios, {type AxiosResponse } from 'axios';
+import {type AxiosResponse } from 'axios';
 import {useEffect, useState} from "react";
 import Navbar from "../components/Navbar.tsx";
 import {Link} from 'react-router-dom';
+import {api} from '../utils/axios';
 
 
 type Glyph = {
@@ -17,9 +18,10 @@ export default function Explore() {
     useEffect(() => {
         const fetchGlyphs = async () => {
             try {
-                const res: AxiosResponse<Glyph[]> = await axios.get<Glyph[]>('http://localhost:8000/api/glyphs/explore/')
+                const res: AxiosResponse<Glyph[]> = await api.get<Glyph[]>('/glyphs/explore/')
                 setGlyphs(res.data);
             } catch (err) {
+                console.error(err);
                 setError('Failed to load users');
             }
         };
