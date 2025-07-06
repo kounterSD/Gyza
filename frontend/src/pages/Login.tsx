@@ -2,25 +2,29 @@ import { useState, type ChangeEvent, type FormEvent } from 'react';
 import axios, {type AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar.tsx";
+import { useUser } from '../contexts/UserContext';
 
 // Define a type for what the API returns
 type TokenResponse = {
+    id: string;
+    username: string;
+    email: string;
     access: string;
-    refresh: string;
 };
 
-function Login() {
+export default function Login() {
     // useState with types
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
     const navigate = useNavigate();
+    const { login } = useUser();
+
 
     // Form submission handler with typed event
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         const { username, password } = formData;
 
         try {
@@ -30,13 +34,17 @@ function Login() {
                 {
                     username: username,
                     password: password
-                }
+                },{withCredentials: true},
             );
 
-            console.log(res.data);
-
+            const user = {
+                id: res.data.id,
+                username:res.data.username,
+                email:res.data.email,
+            }
+            // from useUser custom hook to share userinfo with UserContext
+            login(user);
             localStorage.setItem('access', res.data.access);
-            localStorage.setItem('refresh', res.data.refresh);
 
             navigate('/explore');
         } catch (err) {
@@ -52,8 +60,6 @@ function Login() {
             [name]: value,
         }));
     };
-
-
 
     return (
         <>
@@ -109,4 +115,3 @@ function Login() {
     );
 }
 
-export default Login;
