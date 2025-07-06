@@ -29,14 +29,12 @@ class ReadGlyph(APIView):
 
         try:
             image = Image.open(glyph.image)
-            print("Reading glyph with key:", key)
-            print("Glyph image path:", glyph.image.path)
             plaintext = gyza.read(image, key)
         except Exception as e:
             if "Padding is incorrect" in str(e):
                 return Response({
                     "detail": "Incorrect key. Unable to decrypt the glyph."
-                }, status=400)
+                }, status=403) #Forbidden
             return Response({
                 "status": "failure",
                 "error": f"Error reading glyph: {str(e)}"
@@ -58,6 +56,7 @@ class ListExploreGlyphs(generics.ListAPIView):
 
 # Retrieve a single Glyph
 class RetrieveGlyph(generics.RetrieveAPIView):
+    permission_classes = []
     serializer_class = GlyphSerializer
     queryset = Glyph.objects.all()  # Let DRF handle lookup
     lookup_field = 'id'
