@@ -42,8 +42,10 @@ class CreateGlyphSerializer(serializers.ModelSerializer):
         return glyph
 
 class GlyphSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='author.username', read_only=True)
+
     class Meta:
         model = Glyph
-        fields = ["id", "title", "image"]
+        fields = ["id", "author", "title", "image", "created_at"]
 
 
