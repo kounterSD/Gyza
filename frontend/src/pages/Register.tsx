@@ -47,7 +47,7 @@ function Register() {
             localStorage.setItem('access', res.data.access);
             localStorage.setItem('refresh', res.data.refresh);
 
-            navigate('/profile');
+            navigate('/explore');
         } catch (err) {
             console.error('Registration failed:', err);
         }
@@ -81,6 +81,7 @@ function Register() {
                         <input
                             type="text"
                             id="username"
+                            name="username"
                             className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                             placeholder="yourusername"
                             onChange={handleChange}
@@ -95,6 +96,7 @@ function Register() {
                         <input
                             type="email"
                             id="email"
+                            name="email"
                             className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                             placeholder="you@example.com"
                             onChange={handleChange}
