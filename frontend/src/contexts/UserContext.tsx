@@ -1,4 +1,5 @@
 import {createContext, useContext, useState, type ReactNode} from 'react';
+import {api} from "../utils/axios.tsx";
 
 export interface User{
     id: string;
@@ -22,7 +23,12 @@ export function UserProvider ({children}: {children: ReactNode}){
         localStorage.setItem('user', JSON.stringify(user));
     }
 
-    const logout = () => {
+    const logout = async () => {
+        // requests /users/logout/ to clear refresh_token cookie.
+        const response = await api.post('/users/logout/', {}, {withCredentials:true})
+        console.log(response.data);
+
+        // Clear localStorage
         setUser(null);
         localStorage.removeItem('user');
         localStorage.removeItem('access');

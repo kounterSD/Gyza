@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import {useNavigate} from "react-router-dom";
 
+
 function Navbar() {
     const { isLoggedIn, user, logout } = useUser();
     const navigate = useNavigate();
@@ -9,6 +10,7 @@ function Navbar() {
     const handleLogout = () => {
         logout();
         navigate('/login');
+
     }
     return (
         <div className="navbar bg-base-100 shadow-sm px-4">

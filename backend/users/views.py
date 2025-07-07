@@ -52,3 +52,13 @@ class UserProfileView(APIView):
 
     def get(self, request):
         return Response({"message" : f"Congratulations you are logged in, {request.user.username} "})
+
+
+class UserLogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        response = Response({"message": "Logged out successfully"}, status=200)
+
+        response.delete_cookie('refresh_token', path='/')
+        return response
