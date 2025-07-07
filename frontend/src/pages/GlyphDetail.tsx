@@ -8,7 +8,9 @@ import {useParams} from "react-router";
 type Glyph = {
     id: string;
     title: string;
+    author: string;
     image: string;
+    created_at: string;
 }
 
 function GlyphDetail() {
@@ -61,29 +63,35 @@ function GlyphDetail() {
 
     return (
         <>
-            <Navbar/>
-            <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 min-h-screen bg-gray-950">
-                {glyph && <img src={glyph.image} alt={glyph.title} className="max-w-sm rounded-lg" />}
-                <input
-                    onChange={handleSecretChange}
-                    type="text"
-                    name="secret"
-                    placeholder="Secret"
-                    className="p-3 w-80 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                    type="submit"
-                    className="w-80 bg-red-600 hover:bg-red-700 transition-colors text-white font-semibold py-3 rounded-md shadow-md"
-                >
-                    Decrypt
-                </button>
-            </form>
+            <Navbar />
+            <div  >
+                <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 min-h-screen ">
+                    <h1 className="text-3xl font-bold mb-2">{glyph && glyph.title}</h1>
+                    {glyph && <img src={glyph.image} alt={glyph.title} className="max-w-sm rounded-lg" />}
+                    <h5>{glyph && glyph.author}</h5>
+                    <h6>{glyph && glyph.created_at}</h6>
+                    <input
+                        onChange={handleSecretChange}
+                        type="text"
+                        name="secret"
+                        placeholder="Secret"
+                        className="p-3 w-80 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button
+                        type="submit"
+                        className="w-80 bg-red-600 hover:bg-red-700 transition-colors text-white font-semibold py-3 rounded-md shadow-md"
+                    >
+                        Decrypt
+                    </button>
+                    { pt && <div className="flex text-center justify-center mt-4 bg-gray-950">{pt}</div>}
+                    {error && (
+                        <div className="text-red-500 text-center mt-4">
+                            {error}
+                        </div>)}
 
-            { pt && <div className="flex text-center justify-center mt-4 bg-gray-950">{pt}</div>}
-            {error && (
-                <div className="text-red-500 text-center mt-4">
-                    {error}
-                </div>)}
+                </form>
+            </div>
+
         </>
     )
 }

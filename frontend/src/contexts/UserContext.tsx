@@ -1,6 +1,6 @@
 import {createContext, useContext, useState, type ReactNode} from 'react';
 
-interface User{
+export interface User{
     id: string;
     username: string;
     email: string;

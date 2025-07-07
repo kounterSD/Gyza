@@ -3,9 +3,9 @@ import {useEffect, useState} from "react";
 import Navbar from "../components/Navbar.tsx";
 import {Link} from 'react-router-dom';
 import {api} from '../utils/axios';
+import {GlyphCard} from "../components/GlyphCard.tsx";
 
-
-type Glyph = {
+export type Glyph = {
     id: string;
     title: string;
     image: string;
@@ -30,30 +30,25 @@ export default function Explore() {
 
     return (
         <>
-            <div>
-                <Navbar/>
-            </div>
+            <Navbar />
 
-            <div className="min-h-screen bg-gray-900 text-white p-6">
-                <h1 className="text-3xl font-bold mb-6">Explore Glyphs</h1>
+            <div className="min-h-screen bg-base-200 text-base-content p-6">
+                <div className="max-w-6xl mx-auto">
+                    <h1 className="text-4xl font-bold mb-8">Explore Glyphs</h1>
 
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+                    {error && (
+                        <div className="alert alert-error shadow-lg mb-6">
+                            <span>{error}</span>
+                        </div>
+                    )}
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {glyphs.map((Glyph) => (
-                        <Link to={`/glyph/${Glyph.id}`} key={Glyph.id}>
-                            <div
-                                className="bg-gray-800 p-4 rounded-lg shadow-md hover:bg-gray-700 transition"
-                            >
-                                <img
-                                    src={Glyph.image}
-                                    alt={Glyph.title}/>
-
-                                <h2 className="text-xl font-semibold">{Glyph.title}</h2>
-                            </div>
-                        </Link>
-
-                    ))}
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {glyphs.map((glyph) => (
+                            <Link to={`/glyph/${glyph.id}`} key={glyph.id}>
+                                <GlyphCard glyph={glyph} />
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
