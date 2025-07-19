@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../public/gyza-logo.png";
-import Footer from "../components/Footer.tsx"; // adjust path
+import Footer from "../components/Footer.tsx";
 
 export default function Landing() {
     return (

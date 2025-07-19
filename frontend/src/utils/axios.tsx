@@ -30,7 +30,7 @@ const refreshToken = async () => {
         if (axios.isAxiosError(e) && e.response?.status === 401) {
             // Clear all tokens and user data
             localStorage.removeItem("access");
-            // You'll need to handle this error specifically to trigger a logout
+            // handled below to trigger logout
             throw new Error("refresh_token_expired");
         }
         throw e;
@@ -63,9 +63,7 @@ api.interceptors.response.use(
                 return api(originalRequest);
             } catch (refreshError:Error | any) {
                 if (refreshError.message === "refresh_token_expired") {
-                    // Handle expired refresh token
-                    // You'll need to create a custom event or use a state management solution
-                    // to handle this across your application
+                    // triggers CustomEvent to trigger logout.
                     window.dispatchEvent(new CustomEvent('auth:expired'));
                 }
                 return Promise.reject(refreshError);

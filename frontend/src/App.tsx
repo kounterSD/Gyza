@@ -20,7 +20,7 @@ function App() {
             logout();
             navigate('/login');
         };
-
+        // listens for expired tokens event(auth:expired) to logout()
         window.addEventListener('auth:expired', handleAuthExpired);
 
         return () => {

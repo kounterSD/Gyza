@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
-import logo from '../../public/gyza-logo.png'; // Assuming image is inside /src/assets
+import logo from '../../public/gyza-logo.png';
 
 function Navbar() {
     const { isLoggedIn, user, logout } = useUser();

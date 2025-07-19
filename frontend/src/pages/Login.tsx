@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar.tsx";
 import { useUser } from '../contexts/UserContext';
 import Footer from "../components/Footer.tsx";
 
-// Define a type for what the API returns
+// Defined a type for what the API returns
 type TokenResponse = {
     id: string;
     username: string;
