@@ -1,3 +1,0 @@
-# Backend Documentation
-
-## Directory Structure
