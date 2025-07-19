@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 export const api = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: apiBaseUrl,
     withCredentials: true,
 })
 
@@ -22,7 +23,7 @@ api.interceptors.request.use(
 
 const refreshToken = async () => {
     try {
-        const resp = await axios.post("http://localhost:8000/api/users/token/refresh/", {},{withCredentials:true});
+        const resp = await axios.post(`${apiBaseUrl}/users/token/refresh/`, {},{withCredentials:true});
         console.log("refresh token", resp.data);
         return resp.data;
     } catch (e) {
