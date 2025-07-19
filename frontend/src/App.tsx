@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 
 function App() {
-    const { logout, user } = useUser();
+    const { logout } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
             <Route path="/register" element={<Register/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/explore" element={<Explore/>}></Route>
-            <Route path="/glyph/create/" element={<ProtectedRoute user={user}><GlyphCreate/></ProtectedRoute>}/>
+            <Route path="/glyph/create/" element={<ProtectedRoute><GlyphCreate/></ProtectedRoute>}/>
             <Route path="/glyph/:uuid" element={<GlyphDetail/>}></Route>
         </Routes>
 

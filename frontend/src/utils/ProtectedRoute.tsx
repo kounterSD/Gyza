@@ -1,14 +1,15 @@
 import { Navigate } from 'react-router-dom';
-import type {User} from "../contexts/UserContext.tsx";
 import type {ReactNode} from "react";
+import { useUser } from "../contexts/UserContext.tsx";
 
 type ProtectedRouteProps = {
-    user: User | null;
     children: ReactNode;
 };
 
-export const ProtectedRoute = ({ user, children }: ProtectedRouteProps) => {
-    if (!user) {
+export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+    const { isLoggedIn } = useUser();
+
+    if (!isLoggedIn) {
         return <Navigate to="/login" replace />;
     }
 
