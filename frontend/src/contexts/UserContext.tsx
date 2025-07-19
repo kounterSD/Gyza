@@ -5,6 +5,7 @@ export interface User{
     id: string;
     username: string;
     email: string;
+    pfp: string;
 }
 
 interface UserContextProps{
@@ -33,7 +34,7 @@ export function UserProvider ({children}: {children: ReactNode}){
         localStorage.removeItem('user');
         localStorage.removeItem('access');
     }
-    const isLoggedIn = !!user;
+    const isLoggedIn = !!localStorage.getItem('user') || !!user;
 
 
     return (

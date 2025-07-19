@@ -2,3 +2,9 @@
 @plugin "daisyui" {
   themes: synthwave --default, cupcake;
 }
+@font-face {
+  font-family: 'FetteEgyptien';
+  src: url('../assets/fonts/FetteEgyptienne.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
