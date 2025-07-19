@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import Navbar from '../components/Navbar';
 import { api } from '../utils/axios';
+import Footer from "../components/Footer.tsx";
 
 export default function GlyphCreate() {
     const [title, setTitle] = useState('');
@@ -112,6 +113,7 @@ export default function GlyphCreate() {
                     {error && <div className="text-red-500 text-center">{error}</div>}
                 </form>
             </div>
+            <Footer/>
         </>
     );
 }

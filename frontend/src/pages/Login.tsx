@@ -3,6 +3,7 @@ import axios, {type AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar.tsx";
 import { useUser } from '../contexts/UserContext';
+import Footer from "../components/Footer.tsx";
 
 // Define a type for what the API returns
 type TokenResponse = {
@@ -10,6 +11,7 @@ type TokenResponse = {
     username: string;
     email: string;
     access: string;
+    pfp: string;
 };
 
 export default function Login() {
@@ -41,6 +43,7 @@ export default function Login() {
                 id: res.data.id,
                 username:res.data.username,
                 email:res.data.email,
+                pfp:res.data.pfp,
             }
             // from useUser custom hook to share userinfo with UserContext
             login(user);
@@ -111,6 +114,7 @@ export default function Login() {
                 </form>
             </div>
         </div>
+            <Footer/>
         </>
     );
 }

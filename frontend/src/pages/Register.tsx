@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from 'react';
 import axios, {type AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar.tsx";
+import Footer from "../components/Footer.tsx";
 
 // Define a type for what the API returns
 type TokenResponse = {
@@ -151,6 +152,7 @@ function Register() {
                 </p>
             </div>
             </div>
+            <Footer/>
         </>
 );
 }

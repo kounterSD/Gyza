@@ -4,6 +4,7 @@ import {api} from '../utils/axios';
 // import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar.tsx";
 import {useParams} from "react-router";
+import Footer from "../components/Footer.tsx";
 
 type Glyph = {
     id: string;
@@ -64,7 +65,7 @@ function GlyphDetail() {
     return (
         <>
             <Navbar />
-            <div  >
+            <div  className="bg-base-200 text-base-content p-6">
                 <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-4 min-h-screen ">
                     <h1 className="text-3xl font-bold mb-2">{glyph && glyph.title}</h1>
                     {glyph && <img src={glyph.image} alt={glyph.title} className="max-w-sm rounded-lg" />}
@@ -91,7 +92,7 @@ function GlyphDetail() {
 
                 </form>
             </div>
-
+            <Footer/>
         </>
     )
 }
