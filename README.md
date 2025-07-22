@@ -1,69 +1,78 @@
-# Gyza
+# Gyza Project
 
-## Contents
-1. [Introduction](#introduction)
-2. [Implementation](#implementation)
-3. [Use Case](#usecase)
+<img width=200 src="./frontend/public/gyza-logo.png"/>
 
-## Introduction
-Welcome to Gyza - A visual diary for encrypted thoughts — post your words as art, and let others unlock them with a key.
+This repository contains the source code for **Gyza**, a full-stack application that consists of a **Django** backend and a **React + TypeScript** frontend.
 
-It's a creative social platform where users post encrypted thoughts that are transformed into generative art (Glyphs) — the message remains private, but the emotion is public. With the right key, anyone can decrypt and reveal the original message behind the art.
+---
 
-## Implementation
-This outlines the Tech Stack used and an Architectural overview of the Web Application.
+Gyza is a full-stack platform where users can create and share visually striking images that secretly contain encrypted personal
+stories or messages. Using steganography, the app hides text within the pixels of images—
+like modern-day hieroglyphs. These "glyphs" are publicly viewable, but only those with the secret can unlock and read the
+hidden content. Inspired by the mystery of ancient Giza, Gyza brings a new kind of storytelling to the digital age—where art
+becomes a vessel for secret expression.
 
-### Tech Stack
-1. Frontend    React.js	
-2. Backend     Python/Django
-3. Database    MySQL
+Full documentation is available in the [Wiki](https://github.com/kounterSD/Gyza/wiki).
+
+# Installation Guide
+
+## Prerequisites
+- Python 3.9.6 or higher
+- Node.js 18+ and npm
+- Git
+
+## Clone repository
+
+`git clone https://gitlab.rz.htw-berlin.de/s0597432/gyza.git`
+
+## Backend Setup (Django)
+
+### 1. Navigate to /backend
+`cd ./gyza/backend`
+
+### 2. Set Up Python Virtual Environment
+
+```
+python -m venv .venv
+source venv/bin/activate 
+```
+
+### 3. Install Dependencies
+
+`pip install -r requirements.txt`
+
+### 4. Database Setup
+`python manage.py migrate`
+
+### 5. Create SuperUser (Optional)
+
+`python manage.py createsuperuser`
+
+### 6. Run Development Server
+
+`python manage.py runserver`
+
+Backend will be available at `http://localhost:8000`
+
+## Frontend Setup (React)
+
+### 1. Navigate to ./frontend/
+
+`cd ./gyza/frontend/`
+
+### 2. Install Dependencies
+
+`npm install`
+
+### 3. Environment Setup
+Create a `.env` file in the frontend root directory:
+
+`VITE_API_URL=http://localhost:8000/api`
+
+### 4. Run Development Server
+
+`npm run dev`
+
+Frontend will be available at `http://localhost:5173`
 
 
-### Architecture
-Gyza will use a 3-tier-architecture:
-1. Presentation Layer:
-    1. User dashboard - create Glyphs, view profiles.
-    2. Input Notes --> Encrypted on CLient-Side --> Ciphertext send to server.
-2. Logic Layer:
-    1. Creation of Glyphs(Deterministic generative art) from ciphertext.
-    2. Handle Authentication, API Requests.
-    3. Glyph Solver logic --> Ciphertext from a Glyph.
-3. Database
-    1. Glyph Storage
-    2. User database
-## UseCase
-Gyza enables private communication in public space — like posting a secret diary page as a painting, and only those with the key can read the words behind the brushstrokes.
-
-This section outlines the look and feel of the web application, specifically, the UI/UX elements.
-
-### UI/UX
-
-#### Public Feed
-
-1. Trending Glyph Posts
-2. Search Bar
-
-#### Profile Pages
-
-1. Glyph Posts
-2. Comments, Interactions
-3. User Profile - pfp, followers
-
-#### Glyph Creation Page
-
-1. Input Text Field - Notes
-2. Encryption Key Input Field
-
-### User Story
-
-As a user,
-I want to share a secret message as a beautiful piece of art,
-so that others can enjoy the visuals, but only trusted people can read the message.
-
-As a viewer,
-I want to explore a feed of mysterious, generative art,
-so that I can experience beauty that feels alive and personal — even if I don’t know the message.
-
-As a trusted friend,
-I want to unlock the meaning behind a piece of encrypted art,
-so that I can read the message while still appreciating the artwork.
